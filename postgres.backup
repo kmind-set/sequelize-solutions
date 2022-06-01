@@ -1,0 +1,37 @@
+CREATE TABLE if not exists authors (
+	author_id serial PRIMARY KEY,
+	name VARCHAR ( 50 ) UNIQUE NOT NULL,
+);
+
+
+CREATE TABLE if not exists books (
+	book_id serial PRIMARY KEY,
+	author integer,
+	name VARCHAR ( 50 ) NOT NULL,
+	publication_date date ,
+	publication_year integer not null
+);
+
+
+alter table books
+add constraint fk_author
+ FOREIGN KEY(author) 
+      REFERENCES authors(author_id);
+	  
+INSERT INTO books (name,publication_date,publication_year,author)
+VALUES ('The Canterville Ghost',null,1887,1),
+	('The Picture of Dorian Gray',null,1890,1),
+	('The Ballad of Reading Gaol',null,1899,1),
+ ('Carrie',null,1974,2),
+	('It',null,1986,2),
+	('The Shining',null,1977,2),
+ ('1984',null,1949,3),
+	('Animal Farm',null,1945,3),
+	('Homage to Catalonia',null,1938,3)
+
+
+
+
+
+	  
+
